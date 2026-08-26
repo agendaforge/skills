@@ -1,6 +1,8 @@
 # AgendaForge skills
 
-Use these official AgendaForge skills to help an AI agent connect to the MCP server or integrate with the REST API.
+Official skills for [AgendaForge](https://agendaforge.app), the AI-native event management platform: call for papers and review, agenda building, speaker and sponsor management, registration, and event email, with an MCP server and REST API built for AI agents.
+
+Use these skills to help an AI agent connect to the [AgendaForge MCP server](https://agendaforge.app/developers) or integrate with the REST API.
 
 Install them with:
 

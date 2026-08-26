@@ -5,6 +5,17 @@ description: Integrate an AI agent with AgendaForge REST API v1, REST Hooks, and
 
 # Use AgendaForge REST API v1
 
+## Get an API key
+
+Ask the user (or their AgendaForge Owner or Admin) to create the key in the dashboard:
+
+1. Sign in at `https://dash.agendaforge.app` and open the organization.
+2. Go to **Organization Settings, API tokens** (`/{org-slug}/settings/api-tokens`). This page requires admin access.
+3. Create a token and select scopes: **Public REST API** (`public_api`) for this skill's endpoints; add `mcp:read` or `mcp:write` only if the same key will also authenticate an MCP connection.
+4. Copy the `afk_live_...` value immediately. It is shown once; AgendaForge stores only a hash and cannot show it again.
+
+Treat the key like a password: it acts as the organization member who created it.
+
 ## Test the connection first
 
 Send all requests to `https://api.agendaforge.app/api/v1`. Authenticate with an `afk_live_...` organization API key that has the `public_api` scope. Use either `Authorization: Bearer` or `X-API-Key`.
