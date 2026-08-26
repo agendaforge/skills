@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agendaforge",
+  "description": "Official agendaforge-mcp and agendaforge-api skills. Connect to the AgendaForge MCP server at https://mcp.agendaforge.app/mcp or integrate with REST API v1.",
+  "homepage": "https://agendaforge.app/developers",
+  "repository": "https://github.com/agendaforge/skills",
+  "keywords": [
+    "agendaforge",
+    "agendaforge-mcp",
+    "agendaforge-api",
+    "mcp",
+    "events"
+  ]
+}
+
