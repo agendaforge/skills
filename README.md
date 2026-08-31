@@ -14,6 +14,7 @@ npx skills add agendaforge/skills
 
 - [`agendaforge-mcp`](./skills/agendaforge-mcp/SKILL.md): Connect an MCP client, choose authentication, use read tools, and submit approval-gated write proposals.
 - [`agendaforge-api`](./skills/agendaforge-api/SKILL.md): Authenticate to REST API v1, test a connection, manage REST Hooks, and create contacts, sessions, and sponsors.
+- [`agendaforge-docs`](./skills/agendaforge-docs/SKILL.md): Search and fetch AgendaForge public marketing and documentation content, no account required.
 
 ## Public resources
 
