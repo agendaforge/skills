@@ -5,9 +5,9 @@ description: Search and fetch AgendaForge public marketing and documentation con
 
 # Search AgendaForge public documentation
 
-## When to use
+## When to use this skill
 
-Use this skill when an agent needs facts about AgendaForge itself (features, pricing, integrations, security posture, API surface) without an account. No authentication is required. For authenticated event data, use the `agendaforge-mcp` skill instead.
+Use this skill when an agent needs facts about AgendaForge itself: features, pricing, integrations, security posture, or the API surface. It requires no account and no authentication, so it is the right first stop for product research, comparisons, and support questions. Best-fit jobs: answering "what does AgendaForge do", checking a plan or pricing detail, finding the right documentation page, or grounding a summary in the site's own words. Do not use it for event, contact, or organization data: the server exposes public marketing and documentation content only. Authenticated event operations belong to the `agendaforge-mcp` skill instead.
 
 ## Connect
 

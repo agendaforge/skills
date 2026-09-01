@@ -40,3 +40,6 @@ Zapier, Make, n8n (community node), and a WordPress plugin integrate through the
 
 - [`agendaforge-mcp`](./skills/agendaforge-mcp/SKILL.md): connect an MCP client, authenticate, and use all 51 tools.
 - [`agendaforge-api`](./skills/agendaforge-api/SKILL.md): get an API key, call REST API v1, manage REST Hooks, create records safely.
+- [`agendaforge-docs`](./skills/agendaforge-docs/SKILL.md): search and fetch public marketing and documentation content, no account required.
+- [`agendaforge-webhooks`](./skills/agendaforge-webhooks/SKILL.md): subscribe REST Hook webhooks, verify signed deliveries, handle retries, unsubscribe.
+- [`agendaforge-integrations`](./skills/agendaforge-integrations/SKILL.md): connect AgendaForge to Zapier, Make.com, or n8n with an organization API key.

@@ -5,6 +5,10 @@ description: Integrate an AI agent with AgendaForge REST API v1, REST Hooks, and
 
 # Use AgendaForge REST API v1
 
+## When to use this skill
+
+Use this skill for server-to-server integrations, scripts, and automations that need JSON over HTTP instead of MCP. Best-fit jobs: validating a key, subscribing REST Hook webhooks to trigger events, pulling trigger samples, and creating contacts, sessions, and sponsors with safe idempotent retries. Authenticate every request with an organization API key that carries the `public_api` scope. Do not use it for interactive AI-client sessions, which the `agendaforge-mcp` skill is built for, or for public product questions, which need no key at all (the `agendaforge-docs` skill).
+
 ## Get an API key
 
 Ask the user (or their AgendaForge Owner or Admin) to create the key in the dashboard:
@@ -96,6 +100,43 @@ curl -X POST https://api.agendaforge.app/api/v1/sponsors \
     "tierId":"TIER_ID"
   }'
 ```
+
+## List, batch, and async import
+
+Read records back with the cursor-paginated list endpoints: `GET /contacts` (the organization's contacts), and `GET /sessions?eventId=...` and `GET /sponsors?eventId=...` (one owned event; `eventId` is required, and an event owned by another organization returns `403 FORBIDDEN`). All three return `{ "data": [...], "hasMore": boolean, "nextCursor": string|null }`, newest first. Page with `limit` (1-100, default 25) and follow `nextCursor` until `hasMore` is `false`; cursors are opaque, so never construct one.
+
+```sh
+curl "https://api.agendaforge.app/api/v1/contacts?limit=100" \
+  -H "Authorization: Bearer afk_live_xxxxxxxxxxxxxxxxxxxxxxxx"
+# then, while hasMore is true, request the next page with the returned cursor:
+curl "https://api.agendaforge.app/api/v1/contacts?limit=100&cursor=NEXT_CURSOR" \
+  -H "Authorization: Bearer afk_live_xxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+Create up to 100 contacts in one synchronous call with `POST /contacts/batch`. Items succeed or fail independently: the `200` response pairs every input `index` with either the created contact or a typed error, plus a `summary` of `total`, `created`, and `failed`. Each item behaves exactly like a single `POST /contacts`, including firing the `contact.added` trigger.
+
+```sh
+curl -X POST https://api.agendaforge.app/api/v1/contacts/batch \
+  -H "Authorization: Bearer afk_live_xxxxxxxxxxxxxxxxxxxxxxxx" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: batch-attendees-001" \
+  -d '{"contacts":[{"firstName":"Ada","lastName":"Lovelace","email":"ada@example.com"},{"firstName":"Grace","lastName":"Hopper","email":"grace@example.com"}]}'
+```
+
+For up to 1,000 contacts, use the async import. `POST /imports/contacts` answers `202 Accepted` with `{ jobId, type: "contacts_import", status: "pending", total, statusUrl }` and a `Location` header pointing at the poll URL. Poll `GET /jobs/{id}` with backoff until `status` is `completed` or `failed`; the job `result` carries `total`, `processed`, `created`, `failed`, and the first 50 per-item errors. Jobs are retained for 7 days; unknown, expired, and cross-organization ids all answer `404`.
+
+```sh
+curl -X POST https://api.agendaforge.app/api/v1/imports/contacts \
+  -H "Authorization: Bearer afk_live_xxxxxxxxxxxxxxxxxxxxxxxx" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: import-attendees-001" \
+  -d '{"contacts":[{"firstName":"Ada","lastName":"Lovelace","email":"ada@example.com"}]}'
+
+curl https://api.agendaforge.app/api/v1/jobs/JOB_ID \
+  -H "Authorization: Bearer afk_live_xxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+Both endpoints accept an `Idempotency-Key` header.
 
 ## Retry creates safely
 

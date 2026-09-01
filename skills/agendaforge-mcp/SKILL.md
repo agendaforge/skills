@@ -5,6 +5,10 @@ description: Connect an AI agent to AgendaForge MCP for event reads and human-ap
 
 # Use AgendaForge MCP
 
+## When to use this skill
+
+Use this skill for authenticated event operations: list and read events, sessions, agendas, speakers, contacts, sponsors, forms, and registrations, or propose changes that a person approves inside AgendaForge. Best-fit jobs: answering questions from live event data, checking a schedule for conflicts, previewing emails, and preparing writes (sessions, contacts, forms, check-ins, messages) as approval-gated proposals. Always report a write as a pending proposal, never as a completed change. Do not use it for public product questions, which need no account (use the `agendaforge-docs` skill), or for server-to-server JSON automation and webhooks (use the `agendaforge-api` skill).
+
 ## Connect
 
 Configure Claude, Cursor, ChatGPT, or another Streamable HTTP MCP client with one of these URLs:

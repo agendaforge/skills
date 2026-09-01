@@ -15,6 +15,8 @@ npx skills add agendaforge/skills
 - [`agendaforge-mcp`](./skills/agendaforge-mcp/SKILL.md): Connect an MCP client, choose authentication, use read tools, and submit approval-gated write proposals.
 - [`agendaforge-api`](./skills/agendaforge-api/SKILL.md): Authenticate to REST API v1, test a connection, manage REST Hooks, and create contacts, sessions, and sponsors.
 - [`agendaforge-docs`](./skills/agendaforge-docs/SKILL.md): Search and fetch AgendaForge public marketing and documentation content, no account required.
+- [`agendaforge-webhooks`](./skills/agendaforge-webhooks/SKILL.md): Subscribe REST Hook webhooks to 16 trigger events, verify HMAC-SHA256 signed deliveries, pull trigger samples, and unsubscribe cleanly.
+- [`agendaforge-integrations`](./skills/agendaforge-integrations/SKILL.md): Connect AgendaForge to Zapier, Make.com, or n8n with an organization API key: the live Zapier app, Make HTTP modules, or the n8n community node.
 
 ## Public resources
 
